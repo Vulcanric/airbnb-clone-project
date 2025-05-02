@@ -9,6 +9,11 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 4. **Payment Processing:** Integrate a payment system to handle transactions between users and hosts, and record payment details.
 5. **Review System:** Allow users to leave reviews and ratings for properties.
 6. **Data Optimization:** Ensure efficient data retrieval and storage through database optimizations.
+## 👥 Team Roles
+- **Backend Developer**: Implements the core of the app, API endpoints, database schema, and business logic.
+- **Database Administrator**: Manage database design, indexing, and optimizations.
+- **DevOps Enginner**: Handle deployment, monitoring, and scaling of backend services.
+- **QA Engineer**: Ensures the backend functionalities are thoroughly tested and meets quality standards.
 ## 🛠️ Features Overview
 ### 1. API Documentation
 - **OpenAPI Standard**: The backend APIs are documented using the OpenAPI standard to ensure clarity and ease of integration.
