@@ -42,12 +42,11 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 ### Reviews
 - **id**: Identifier a specific review.
 - **content**: Text content.
-- **user_id**: Review belongs to a user.
+- **user_id**: A review belongs to a user.
 - **property_id**: The property upon which a review is made.
 ### Payments
 - **id**: Identify a payment
 - **Price**: Payment price
-- ****
 ## 🛠️ Feature Breakdown
 ### 1. User Management
 - **Endpoints**: `/users/`, `/users/{user_id}/`
@@ -71,3 +70,9 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 - **OpenAPI Standard**: The backend APIs are documented using the OpenAPI standard to ensure clarity and ease of integration.
 - **Django REST Framework**: Provides a comprehensive RESTful API for handling CRUD operations on user and property data.
 - **GraphQL**: Offers a flexible and efficient query mechanism for interacting with the backend.
+## 🔒 API Security
+- **Authentication**: Validating every request to protect user data.
+- **Authorization**: Securing payments.
+- **Rate limiting**: Restricting the number request that can be made in a certain time frame to reduce load and protect from malicious attacks.
+## 🔁 CI/CD Pipeline
+
