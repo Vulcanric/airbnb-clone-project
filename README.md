@@ -75,4 +75,8 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 - **Authorization**: Securing payments.
 - **Rate limiting**: Restricting the number request that can be made in a certain time frame to reduce load and protect from malicious attacks.
 ## 🔁 CI/CD Pipeline
-
+(Continuous Integration / Continuous Delivery)
+Automating the continuous development, testing, and deployment of code changes, integrating features, and applying bug fixes.
+### Tools
+- **Docker**: Provide app containerization, combining app and it's dependencies in a single system.
+- **GitHub Actions**: Automate deployment process.
