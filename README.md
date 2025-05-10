@@ -25,28 +25,52 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 - **CI/CD Pipelines**: Automated pipelines for testing and deploying code changes.
 ## 🧱 Database Design
 ### Users
-- **id**: Identify a specific user.
-- **name**: User full name.
-- **properties**: A user can have multiple properties.
-- **bookings**: A user can have multiple bookings.
+- **user_id**: Primary Key, UUID, Indexed
+- **first_name**: VARCHAR, NOT NULL
+- **last_name**: VARCHAR, NOT NULL
+- **email**: VARCHAR, UNIQUE, NOT NULL, Indexed
+- **password_hash**: VARCHAR, NOT NULL
+- **phone_number**: VARCHAR, NULL
+- **role**: ENUM (`guest`, `host`, `admin`), NOT NULL
+- **created_at**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 ### Properties
-- **id**: Identify a specific property.
-- **name**: A property has a name
-- **user_id**: A property belongs to a user.
-- **bookings**: A property can have many bookings.
+- **property_id**: Primary Key, UUID, Indexed
+- **host_id**: Foreign Key, references `Users[user_id]`
+- **name**: VARCHAR, NOT NULL
+- **description**: TEXT, NOT NULL
+- **location**: VARCHAR, NOT NULL
+- **pricepernight**: DECIMAL, NOT NULL
+- **created_at**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+- **updated_at**: TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP
 ### Bookings
-- **id**: Identify a specific booking.
-- **property_id**: A booking belongs to a property.
-- **user_id**: A booking belongs to a user.
-- **payment_id**: Payment information.
-### Reviews
-- **id**: Identifier a specific review.
-- **content**: Text content.
-- **user_id**: A review belongs to a user.
-- **property_id**: The property upon which a review is made.
+- **booking_id**: Primary Key, UUID, Indexed
+- **property_id**: Foreign Key, references `Properties[property_id]` Indexed
+- **user_id**: Foreign Key, references `Users[user_id]`
+- **start_date**: DATE, NOT NULL
+- **end_date**: DATE, NOT NULL
+- **total_price**: DECIMAL, NOT NULL
+- **status**: ENUM (`pending`, `confirmed`, `canceled`), NOT NULL
+- **created_at**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 ### Payments
-- **id**: Identify a payment
-- **Price**: Payment price
+- **payment_id**: Primary Key, UUID, Indexed
+- **booking_id**: Foreign Key, references `Bookings[booking_id]`
+- **amount**: DECIMAL, NOT NULL
+- **payment_date**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+- **payment_method**: ENUM (`credit_card`, `paypal`, `stripe`), NOT NULL
+### Reviews
+- **review_id**: Primary Key, UUID, Indexed
+- **property_id**: Foreign Key, references `Properties[property_id]` Indexed
+- **user_id**: Foreign Key, references `Users[user_id]`
+- **rating**: INTEGER, CHECK: `rating >= 1 AND rating <= 5`, NOT NULL
+- **comment**: TEXT, NOT NULL
+- **created_at**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+### Messages
+- **message_id**: Primary Key, UUID, Indexed
+- **sender_id**: Foreign Key, references `Users[user_id]`
+- **recipient_id**: Foreign Key, references `Users[user_id]`
+- **message_body**: TEXT, NOT NULL
+- **sent_at**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
 ## 🛠️ Feature Breakdown
 ### 1. User Management
 - **Endpoints**: `/users/`, `/users/{user_id}/`
